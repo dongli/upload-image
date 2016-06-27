@@ -2,7 +2,7 @@
 This Rails plugin contains some handy view components, such as `upload_image`:
 
 ```ruby
-<%= upload_image form: f, image_name: :avatar, max_width: 150, max_height: 150 %>
+<%= upload_image form: f, image_name: :avatar, width: 150, height: 150 %>
 ```
 
 ![](http://7xvqi7.com1.z0.glb.clouddn.com/upload_image_snapshot-1.png)

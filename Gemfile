@@ -13,6 +13,7 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 
+gem 'rails', '~> 5.0.0.rc1'
 gem 'jquery-rails'
 gem 'sass-rails'
 gem 'carrierwave'

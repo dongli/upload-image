@@ -3,7 +3,7 @@
 
 <div id='upload-image-<%= tag %>' class='upload-image'
   data-image-name='<%= image_name %>' data-disable-trigger='false' data-disable-hover='false'
-  style='max-width: <%= max_width %>px; max-height: <%= max_height %>px; height: <%= max_height %>px;'>
+  style='max-width: <%= width %>px; max-height: <%= height %>px; width: <%= width %>px; height: <%= height %>px;'>
   <% image = form.object.send(image_name) %>
   <% if image.url %>
     <% begin %>
