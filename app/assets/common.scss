@@ -1,0 +1,21 @@
+.vertical-centered-block {
+  text-align: center;
+  height: inherit;
+}
+
+.vertical-centered-block:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em;
+}
+
+.vertical-centered {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.hide {
+  display: none;
+}

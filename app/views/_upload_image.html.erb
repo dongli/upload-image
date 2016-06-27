@@ -1,0 +1,23 @@
+<% object_name = form.object.class.name.underscore %>
+<% tag = "#{object_name}_#{image_name}" %>
+
+<div id='upload-image-<%= tag %>' class='upload-image'
+  data-image-name='<%= image_name %>' data-disable-trigger='false' data-disable-hover='false'
+  style='max-width: <%= max_width %>px; max-height: <%= max_height %>px; height: <%= max_height %>px;'>
+  <% image = form.object.send(image_name) %>
+  <% if image.url %>
+    <% begin %>
+      <%= image_tag image.url(:medium), id: "preview-#{tag}" %>
+    <% rescue %>
+      <%= image_tag image.url, id: "preview-#{tag}" %>
+    <% end %>
+  <% else %>
+    <img class='blank-image' id='preview-<%= tag %>'></img>
+  <% end %>
+  <div id='change-shade-<%= tag %>' class='change-shade'>
+    <div class='vertical-centered-block'><div class='vertical-centered'>
+      <span><%= t('upload_image.actions.change') %></span>
+    </div></div>
+  </div>
+</div>
+<%= form.file_field image_name, class: 'hide' %>
