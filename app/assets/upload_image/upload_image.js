@@ -4,7 +4,7 @@ $(document).ready(function() {
   $('.upload-image').each(function() {
     var upload_elem = $(this)
     var tag = upload_elem.attr('id').replace('upload-image-', '')
-    var object_name = tag.split('_')[0]
+    var object_name = tag.split('__')[0]
     var width = upload_elem.width()
     var height = upload_elem.height()
     $('#change-shade-'+tag).css('width', width).css('height', height)
@@ -17,9 +17,9 @@ $(document).ready(function() {
     })
     upload_elem.click(function() {
       // User want to change image.
-      if (!upload_elem.data('disable-trigger')) $('#'+tag).trigger('click')
+      if (!upload_elem.data('disable-trigger')) $('#'+tag.replace('__', '_')).trigger('click')
     })
-    $('#'+tag).change(function() {
+    $('#'+tag.replace('__', '_')).change(function() {
       // Preview selected image.
       if ($('.blank-image').length > 0) $('.blank-image').css('opacity', '1')
       var img = new Image

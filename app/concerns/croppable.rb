@@ -9,7 +9,7 @@ module Croppable
       after_action :set_crop_params, only: [:create]
 
       def set_crop_params
-        model_name = self.class.name.gsub('Controller', '').singularize.downcase
+        model_name = self.class.name.gsub('Controller', '').singularize.underscore
         if params[model_name][:crop_x].present?
           record = instance_variable_get "@#{model_name}"
           record.crop_x = params[model_name][:crop_x]
