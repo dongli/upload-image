@@ -7,9 +7,7 @@ module DongliRailsGears
     end
 
     initializer 'dongli-rails-gears.helpers' do
-      ActiveSupport.on_load :action_controller do
-        helper UploadImageHelper
-      end
+      ActionView::Base.send :include, DongliRailsGears::Helpers
     end
 
     initializer 'dongli-rails-gears.assets' do |app|
