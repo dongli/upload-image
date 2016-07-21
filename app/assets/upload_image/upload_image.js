@@ -2,49 +2,69 @@
 
 $(document).ready(function() {
   $('.upload-image').each(function() {
+    // 'upload_elem' is the outer container.
     var upload_elem = $(this)
+    // 'tag' includes <object_name>__<attribute_name>.
     var tag = upload_elem.attr('id').replace('upload-image-', '')
     var object_name = tag.split('__')[0]
     var width = upload_elem.width()
     var height = upload_elem.height()
-    $('#change-shade-'+tag).css('width', width).css('height', height)
-    upload_elem.children('#preview-'+tag).css('width', width).css('height', height)
-    upload_elem.children('.blank-image').css('width', width).css('height', height)
+    // 'cropper_elem' is the image that will be cropped.
+    // Cropper will create extra elements below 'cropper_elem' (e.g. cropper-container cropper-bg).
+    var cropper_elem = $('#preview-'+tag)
+    // 'change_shade_elem' is the mask cover when user move mouse onto 'upload_elem'.
+    var change_shade_elem = $('#change-shade-'+tag)
+    // 'blank_image_elem' is the default image when there is no image uploaded yet.
+    var blank_image_elem = $('.blank-image')
+    // Set the width and height of elements.
+    change_shade_elem.css('width', width).css('height', height)
+    cropper_elem.css('width', width).css('height', height)
+    blank_image_elem.css('width', width).css('height', height)
+    // Handle the event when user move mouse onto 'upload_elem'.
     upload_elem.hover(function() {
-      if (!upload_elem.data('disable-hover')) $('#change-shade-'+tag).show()
+      if (!upload_elem.data('disable-hover')) change_shade_elem.show()
     }, function() {
-      if (!upload_elem.data('disable-hover')) $('#change-shade-'+tag).hide()
+      if (!upload_elem.data('disable-hover')) change_shade_elem.hide()
     })
+    // Handle the event when user click 'upload_elem' (User wants to upload an image).
     upload_elem.click(function() {
       // User want to change image.
       if (!upload_elem.data('disable-trigger')) $('#'+tag.replace('__', '_')).trigger('click')
     })
+    // Handle the event when user has uploaded an image.
     $('#'+tag.replace('__', '_')).change(function() {
       // Preview selected image.
-      if ($('.blank-image').length > 0) $('.blank-image').css('opacity', '1')
-      var img = new Image
-      img.src = URL.createObjectURL($(this)[0].files[0])
-      $('#preview-'+tag).attr('src', img.src)
+      if (blank_image_elem.length > 0) blank_image_elem.css('opacity', '1')
+      $('#preview-'+tag).attr('src', URL.createObjectURL($(this)[0].files[0]))
       $('#preview-'+tag).cropper({
-        aspectRatio: 1,
+        aspectRatio: width / height,
         minContainerWidth: width,
-        minContainerHeight: height
+        minContainerHeight: height,
+        movable: false,
+        scalable: false,
+        zoomable: false
       })
+      // User is not allowed to change the uploaded image, unless he/she refreshes the page.
       upload_elem.data('disable-trigger', 'true')
       upload_elem.data('disable-hover', 'true')
-      $('#change-shade-'+tag).hide()
+      change_shade_elem.hide()
+      // When user submit form, set the correct crop parameters.
       $(document).mouseup(function(e) {
         if (!upload_elem.is(e.target) && upload_elem.has(e.target).length === 0) {
-          var data = $('#preview-'+tag).cropper('getCropBoxData')
-          var crop_x = data['left']
-          var crop_y = data['top']
-          var crop_w = data['width']
-          var crop_h = data['height']
+          var crop_box = $('#preview-'+tag).cropper('getCropBoxData')
+          var canvas = $('#preview-'+tag).cropper('getCanvasData')
+          var image = $('#preview-'+tag).cropper('getImageData')
+          var crop_x = crop_box.left - canvas.left
+          var crop_y = crop_box.top - canvas.top
+          var crop_w = crop_box.width
+          var crop_h = crop_box.height
           // Scale crop parameters according to the real image size.
-          crop_x *= img.width / width
-          crop_y *= img.height / height
-          crop_w *= img.width / width
-          crop_h *= img.height / height
+          // 'scale' should be equal to image.naturalHeight / image.height.
+          var scale = image.naturalWidth / image.width
+          crop_x *= scale
+          crop_y *= scale
+          crop_w *= scale
+          crop_h *= scale
           // Create fake input elements to send back crop parameters.
           if ($('input[name^="' + object_name + '[crop"]').length > 0) {
             $('input[name="' + object_name + '[crop_x]"]').attr('value', Math.floor(crop_x))
