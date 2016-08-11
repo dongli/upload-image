@@ -16,11 +16,11 @@ module Croppable
           record.crop_y = params[model_name][:crop_y]
           record.crop_w = params[model_name][:crop_w]
           record.crop_h = params[model_name][:crop_h]
-        end
-        if action_name == 'create'
-          uploaded_file = params[model_name].select { |k,v| v.class == ActionDispatch::Http::UploadedFile }.keys.first
-          record.send(uploaded_file).crop
-          record.save
+          if action_name == 'create'
+            uploaded_file = params[model_name].select { |k,v| v.class == ActionDispatch::Http::UploadedFile }.keys.first
+            record.send(uploaded_file).crop
+            record.save
+          end
         end
       end
     elsif self.name.include? 'Uploader'
