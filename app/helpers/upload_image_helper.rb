@@ -1,4 +1,4 @@
-module DongliRailsGears
+module UploadImage
   module Helpers
     def upload_image **args
       render './upload_image', **args

@@ -1,23 +1,26 @@
 <% object_name = form.object.class.name.underscore %>
 <% tag = "#{object_name}__#{image_name}" %>
 
-<div id='upload-image-<%= tag %>' class='upload-image'
-  data-image-name='<%= image_name %>' data-disable-trigger='false' data-disable-hover='false'
+<div id='b9bf30-upload-image-<%= tag %>'
+  class='b9bf30-upload-image'
+  data-image-name='<%= image_name %>'
+  data-disable-trigger='false'
+  data-disable-hover='false'
   style='max-width: <%= width %>px; max-height: <%= height %>px; width: <%= width %>px; height: <%= height %>px;'>
   <% image = form.object.send(image_name) %>
   <% if image.url %>
     <% begin %>
-      <%= image_tag image.url(:medium), id: "preview-#{tag}" %>
+      <%= image_tag image.url(:medium), id: "b9bf30-preview-#{tag}" %>
     <% rescue %>
-      <%= image_tag image.url, id: "preview-#{tag}" %>
+      <%= image_tag image.url, id: "b9bf30-preview-#{tag}" %>
     <% end %>
   <% else %>
-    <img class='blank-image' id='preview-<%= tag %>'></img>
+    <img class='b9bf30-blank-image' id='b9bf30-preview-<%= tag %>'></img>
   <% end %>
-  <div id='change-shade-<%= tag %>' class='change-shade'>
-    <div class='vertical-centered-block'><div class='vertical-centered'>
+  <div id='b9bf30-change-shade-<%= tag %>' class='b9bf30-change-shade'>
+    <div class='b9bf30-container'><div class='b9bf30-center'>
       <span><%= t('upload_image.actions.change') %></span>
     </div></div>
   </div>
 </div>
-<%= form.file_field image_name, class: 'hide' %>
+<%= form.file_field image_name, class: 'b9bf30-hide' %>

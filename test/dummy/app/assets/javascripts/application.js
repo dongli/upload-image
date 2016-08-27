@@ -11,5 +11,5 @@
 // about supported directives.
 //
 //= require jquery
-//= require upload_image/upload_image
+//= require upload_image
 //= require_tree .

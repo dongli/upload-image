@@ -1,15 +1,15 @@
 $:.push File.expand_path('../lib', __FILE__)
 
-require 'dongli_rails_gears/version'
+require 'upload_image/version'
 
 Gem::Specification.new do |s|
-  s.name        = 'dongli-rails-gears'
-  s.version     = DongliRailsGears::VERSION
+  s.name        = 'upload-image'
+  s.version     = UploadImage::VERSION
   s.authors     = ['Li Dong']
-  s.email       = ['dongli@lasg.iap.ac.cn']
-  s.homepage    = 'https://github.com/dongli/dongli-rails-gears'
-  s.summary     = 'This will provide some handy view components.'
-  s.description = 'This is a collection of view components for Rails.'
+  s.email       = ['dongli.init@gmail.com']
+  s.homepage    = 'https://github.com/dongli/upload-image'
+  s.summary     = 'This gem helps to simplify the image upload implementation.'
+  s.description = 'This gem hides the details for implementing an image upload view component with crop function.'
   s.license     = 'MIT'
 
   s.files = Dir['{app,config,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
@@ -18,7 +18,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-rails'
   s.add_dependency 'sass-rails'
 
-  # Dependencies of upload-image component
   s.add_dependency 'carrierwave'
   s.add_dependency 'mini_magick'
 

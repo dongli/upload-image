@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-# Declare your gem's dependencies in dongli-rails-gears.gemspec.
+# Declare your gem's dependencies in upload-image.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
 # development dependencies will be added by default to the :development group.
 gemspec
@@ -13,7 +13,7 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 
-gem 'rails', '~> 5.0.0.rc1'
+gem 'rails', '~> 5.0.0'
 gem 'jquery-rails'
 gem 'sass-rails'
 gem 'carrierwave'

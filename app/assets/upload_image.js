@@ -1,21 +1,21 @@
 //= require ./cropper.min
 
 $(document).ready(function() {
-  $('.upload-image').each(function() {
+  $('.b9bf30-upload-image').each(function() {
     // 'upload_elem' is the outer container.
     var upload_elem = $(this)
     // 'tag' includes <object_name>__<attribute_name>.
-    var tag = upload_elem.attr('id').replace('upload-image-', '')
+    var tag = upload_elem.attr('id').replace('b9bf30-upload-image-', '')
     var object_name = tag.split('__')[0]
     var width = upload_elem.width()
     var height = upload_elem.height()
     // 'cropper_elem' is the image that will be cropped.
     // Cropper will create extra elements below 'cropper_elem' (e.g. cropper-container cropper-bg).
-    var cropper_elem = $('#preview-'+tag)
+    var cropper_elem = $('#b9bf30-preview-'+tag)
     // 'change_shade_elem' is the mask cover when user move mouse onto 'upload_elem'.
-    var change_shade_elem = $('#change-shade-'+tag)
+    var change_shade_elem = $('#b9bf30-change-shade-'+tag)
     // 'blank_image_elem' is the default image when there is no image uploaded yet.
-    var blank_image_elem = $('.blank-image')
+    var blank_image_elem = $('.b9bf30-blank-image')
     // Set the width and height of elements.
     change_shade_elem.css('width', width).css('height', height)
     cropper_elem.css('width', width).css('height', height)
@@ -35,8 +35,8 @@ $(document).ready(function() {
     $('#'+tag.replace('__', '_')).change(function() {
       // Preview selected image.
       if (blank_image_elem.length > 0) blank_image_elem.css('opacity', '1')
-      $('#preview-'+tag).attr('src', URL.createObjectURL($(this)[0].files[0]))
-      $('#preview-'+tag).cropper({
+      $('#b9bf30-preview-'+tag).attr('src', URL.createObjectURL($(this)[0].files[0]))
+      $('#b9bf30-preview-'+tag).cropper({
         aspectRatio: width / height,
         minContainerWidth: width,
         minContainerHeight: height,
@@ -51,9 +51,9 @@ $(document).ready(function() {
       // When user submit form, set the correct crop parameters.
       $(document).mouseup(function(e) {
         if (!upload_elem.is(e.target) && upload_elem.has(e.target).length === 0) {
-          var crop_box = $('#preview-'+tag).cropper('getCropBoxData')
-          var canvas = $('#preview-'+tag).cropper('getCanvasData')
-          var image = $('#preview-'+tag).cropper('getImageData')
+          var crop_box = $('#b9bf30-preview-'+tag).cropper('getCropBoxData')
+          var canvas = $('#b9bf30-preview-'+tag).cropper('getCanvasData')
+          var image = $('#b9bf30-preview-'+tag).cropper('getImageData')
           var crop_x = crop_box.left - canvas.left
           var crop_y = crop_box.top - canvas.top
           var crop_w = crop_box.width
