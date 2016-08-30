@@ -1,6 +1,6 @@
 //= require ./cropper.min
 
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
   $('.b9bf30-upload-image').each(function() {
     // 'upload_elem' is the outer container.
     var upload_elem = $(this)
