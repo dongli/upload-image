@@ -54,6 +54,12 @@ And then execute:
 $ bundle
 ```
 
+Add the require statement in your `config/application.rb`:
+
+```ruby
+require 'upload_image'
+```
+
 ## Contributing
 Feel free to contribute.
 
