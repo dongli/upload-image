@@ -15,30 +15,30 @@ Then you will get:
 There are some places you need to modify in your Rails app. For example:
 
 1. Model file
-```ruby
-class User < ApplicationRecord
-  mount_uploader :avatar, ImageUploader
-  include Croppable
-end
-```
+  ```ruby
+  class User < ApplicationRecord
+    mount_uploader :avatar, ImageUploader
+    include Croppable
+  end
+  ```
 2. CarrierWave uploader file
-```ruby
-class ImageUploader < CarrierWave::Uploader::Base
-  include Croppable
-  ...
-end
-```
+  ```ruby
+  class ImageUploader < CarrierWave::Uploader::Base
+    include Croppable
+    ...
+  end
+  ```
 3. Controller file
-```ruby
-class UsersController < ApplicationController
-  include Croppable
-  ...
-end
-```
+  ```ruby
+  class UsersController < ApplicationController
+    include Croppable
+    ...
+  end
+  ```
 4. View file
-```ruby
-<%= upload_image form: f, image_name: :avatar, width: 150, height: 150 %>
-```
+  ```ruby
+  <%= upload_image form: f, image_name: :avatar, width: 150, height: 150 %>
+  ```
 
 Then you are good to go.
 
