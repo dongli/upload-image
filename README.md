@@ -1,3 +1,5 @@
+[![Gem Version](https://badge.fury.io/rb/upload-image.svg)](https://badge.fury.io/rb/upload-image)
+
 # Upload Image
 This Rails gem simplifies the implementation of uploading image. With it, you can write the following line in your `*.html.erb` as a view component:
 
