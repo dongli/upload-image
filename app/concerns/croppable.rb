@@ -9,9 +9,15 @@ module Croppable
       after_action :set_crop_params, only: [:create]
 
       def set_crop_params
-        model_name = self.class.name.gsub('Controller', '').singularize.underscore
+        record = nil
+        self.instance_variables.each do |name|
+          record = self.instance_variable_get name
+          next unless record.is_a? ActiveRecord::Base
+          break
+        end
+        raise StandardError.new("Cannot find ActiveRecord object! #{self.instance_variables}") unless record
+        model_name = record.class.name.singularize.underscore
         if params[model_name][:crop_x].present?
-          record = instance_variable_get "@#{model_name}"
           record.crop_x = params[model_name][:crop_x]
           record.crop_y = params[model_name][:crop_y]
           record.crop_w = params[model_name][:crop_w]
