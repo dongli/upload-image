@@ -13,9 +13,20 @@ Then you will get:
 ![](http://7xvqi7.com1.z0.glb.clouddn.com/upload_image_snapshot-2.png)
 ![](http://7xvqi7.com1.z0.glb.clouddn.com/upload_image_snapshot-3.png)
 
+It takes advantages of `carrierwave` and `cropper.js`.
+
 ## Usage
 There are some places you need to modify in your Rails app. For example:
 
+- JavaScript asset file `app/assets/javascripts/application.js`
+```js
+//= require upload-image
+```
+- Stylesheet asset file `app/assets/stylesheets/application.scss`
+
+```scss
+//= require upload-image
+```
 - Model file
 ```ruby
 class User < ApplicationRecord
@@ -48,7 +59,7 @@ Then you are good to go.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'upload-image', github: 'dongli/upload-image'
+gem 'upload-image', '~> 0.1'
 ```
 
 And then execute:
@@ -59,7 +70,7 @@ $ bundle
 Add the require statement in your `config/application.rb`:
 
 ```ruby
-require 'upload_image'
+require 'upload-image'
 ```
 
 ## Contributing

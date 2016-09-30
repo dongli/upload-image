@@ -1,6 +1,6 @@
 $:.push File.expand_path('../lib', __FILE__)
 
-require 'upload_image/version'
+require 'upload-image/version'
 
 Gem::Specification.new do |s|
   s.name        = 'upload-image'

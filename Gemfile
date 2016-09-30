@@ -16,6 +16,7 @@ gemspec
 gem 'rails', '~> 5.0.0'
 gem 'jquery-rails'
 gem 'sass-rails'
+gem 'turbolinks', '~> 5'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'simple_form'

@@ -3,7 +3,7 @@ require_relative 'boot'
 require 'rails/all'
 
 Bundler.require(*Rails.groups)
-require 'upload_image'
+require 'upload-image'
 
 module Dummy
   class Application < Rails::Application
