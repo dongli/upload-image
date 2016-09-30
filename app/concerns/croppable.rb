@@ -12,10 +12,9 @@ module Croppable
         record = nil
         self.instance_variables.each do |name|
           record = self.instance_variable_get name
-          next unless record.is_a? ActiveRecord::Base
-          break
+          break if record.is_a? ActiveRecord::Base and params.keys.include? record.class.name.downcase
         end
-        raise StandardError.new("Cannot find ActiveRecord object! #{self.instance_variables}") unless record
+        raise StandardError.new("Cannot find ActiveRecord object! #{self.instance_variables}") unless record.is_a? ActiveRecord::Base
         model_name = record.class.name.singularize.underscore
         if params[model_name][:crop_x].present?
           record.crop_x = params[model_name][:crop_x]
