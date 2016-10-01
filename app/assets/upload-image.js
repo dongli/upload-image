@@ -9,6 +9,12 @@ $(document).on('turbolinks:load', function() {
     var object_name = tag.split('__')[0]
     var width = upload_elem.width()
     var height = upload_elem.height()
+    // Check parent width, if it is smaller than upload_elem's width, reset upload_elem.
+    if (upload_elem.parent().width() < width) {
+        height = height * upload_elem.parent().width() / width
+        width = upload_elem.parent().width()
+        upload_elem.css('width', width).css('height', height)
+    }
     // 'cropper_elem' is the image that will be cropped.
     // Cropper will create extra elements below 'cropper_elem' (e.g. cropper-container cropper-bg).
     var cropper_elem = $('#b9bf30-preview-'+tag)
