@@ -17,14 +17,17 @@ module Croppable
         raise StandardError.new("Cannot find ActiveRecord object! #{self.instance_variables}") unless record.is_a? ActiveRecord::Base
         model_name = record.class.name.singularize.underscore
         if params[model_name][:crop_x].present?
-          record.crop_x = params[model_name][:crop_x]
-          record.crop_y = params[model_name][:crop_y]
-          record.crop_w = params[model_name][:crop_w]
-          record.crop_h = params[model_name][:crop_h]
-          if action_name == 'create'
-            uploaded_file = params[model_name].select { |k,v| v.class == ActionDispatch::Http::UploadedFile }.keys.first
-            record.send(uploaded_file).crop
-            record.save
+          begin
+            record.crop_x = params[model_name][:crop_x]
+            record.crop_y = params[model_name][:crop_y]
+            record.crop_w = params[model_name][:crop_w]
+            record.crop_h = params[model_name][:crop_h]
+            if action_name == 'create'
+              uploaded_file = params[model_name].select { |k,v| v.class == ActionDispatch::Http::UploadedFile }.keys.first
+              record.send(uploaded_file).crop
+              record.save
+            end
+          rescue NoMethodError
           end
         end
       end
